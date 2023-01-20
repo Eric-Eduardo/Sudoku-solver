@@ -17,12 +17,12 @@ var sudoku = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0]];
 var resolucaoPossivel = 1;
-
+var sudokuCompleto = 0;
 var error = document.getElementsByClassName("mensagem-erro")[0];
 var closeErro = document.getElementsByClassName("icone-fechar")[0];
 
 const btnSouve = document.getElementById("btn-solve");
-
+const btnRefazer = document.getElementById("btn-refazer");
 const esconderErro = () => {
     error.style.transform = "translate(-50%, -40px)";
     error.style.visibility = "hidden";
@@ -31,6 +31,20 @@ const esconderErro = () => {
 
 closeErro.addEventListener("click", esconderErro);
 btnSouve.addEventListener("click", resolverSudoku);
+btnRefazer.addEventListener("click", novoSudoku);
+
+function novoSudoku() {
+    sudoku = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    setSudoku();
+}
 
 function getSudoku() { // Pega o sudoku da tela e atualiza o array
     for (var i = 0; i < 9; i++) {
@@ -53,6 +67,7 @@ function resolverSudoku() {
     if (sudokuValido()) {
         resolucaoPossivel = solve(sudoku, 0, 0);
         setSudoku();
+        sudokuCompleto = 1;
     } else {
         error.style.transform = "translate(-50%, 0px)";
         error.style.visibility = "visible";
@@ -79,9 +94,9 @@ function quadrante(lin, col) {
 
 function existeLinCol(num, lin, col, jogo) {
     for (var i = 0; i < 9; i++) { // verifica linha
-        if (jogo[lin][i] == num)
+        if (jogo[lin][i] == num && i!=col)
             return 1;
-        if (jogo[i][col] == num) // veririfica coluna
+        if (jogo[i][col] == num && i!=lin) // veririfica coluna
             return 1;
     }
 
@@ -92,7 +107,8 @@ function existeNoQuadrante(num, lin, col, jogo) {
     //Quadrante é o conjunto de 9 casas do sudoku
     for (var i = 0; i < 9; i++) {
         for (var a = 0; a < 9; a++) {
-            if (quadrante(i, a)==quadrante(lin, col) && jogo[i][a]==num) {
+            if (quadrante(i, a)==quadrante(lin, col) && jogo[i][a]==num && i!=lin && a!=col) {
+                // console.log("Existe no quadrante");
                 return 1;
             }
         }
@@ -101,6 +117,7 @@ function existeNoQuadrante(num, lin, col, jogo) {
 }
 
 function valido(num, lin, col, jogo) {
+    // console.log(`verificando valido(${num}, ${lin}, ${col})`);
     if (existeNoQuadrante(num, lin, col, jogo) || existeLinCol(num, lin, col, jogo))
         return 0;
     else
@@ -141,25 +158,3 @@ function solve(jogo, lin, col) {
     }
 }
 
-/*
-function solve(jogo, lin, col) {
-    if (lin==8 && col==9) {
-        return 1;
-    } else if (col>8) {
-        return solve(jogo, lin+1, 0);
-    } else if (jogo[lin][col] != 0) {
-        return solve(jogo, lin, col+1);
-    } else {
-        for (var i = 1; i <= 9; i++){
-            if (valido(i, lin, col, jogo)) {
-                jogo[lin][col] = i;
-                if (solve(jogo, lin, col+1))
-                    return 1;
-                else 
-                    jogo[lin][col] = 0;
-            }
-        }
-        return 0;
-    }
-}
-*/

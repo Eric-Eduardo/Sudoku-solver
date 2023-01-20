@@ -189,18 +189,23 @@ td:hover, .selecionado {
 #btn-solve {
     gap: 10px;
     background-color: #7327D4;
+    background-color: #FFC700;
     border-radius: 7px;
-    grid-column-start: 1;
-    grid-column-end: 3;
     font-size: 24px;
     font-weight: 600;
     color: white;
+    order: 2;
 }
 #btn-apagar {
     border-radius: 7px;
-    background-color: #FFC700;
+    background-color: #7327D4;
+    order: 1;
 }
-
+#btn-refazer {
+    border-radius: 7px;
+    background-color: #FF006B;
+    order: 3;
+}
 
 @media (max-width: 700px) {
     header {
@@ -222,22 +227,15 @@ td:hover, .selecionado {
         justify-content: center;
         margin-top: 15px;
     }
-    #btn-solve {
-        font-size: 20px;
-        grid-column-start: 4;
-        grid-column-end: 6;
+
+    .icon-tabler-player-play, .icon-tabler-eraser, .icon-tabler-rotate {
+        width: 60%;
+        
     }
-    .icon-tabler-player-play {
-        width: 20%;
-        /* height: 20vh; */
-    }
-    .icon-tabler-eraser {
-        width: 70%;
-    }
+    #btn-solve {order: 3;}
+    #btn-apagar {order: 1;}
+    #btn-refazer {order: 2;}
     .numero {
         font-size: 27px;
     }
-  
-
-
 }

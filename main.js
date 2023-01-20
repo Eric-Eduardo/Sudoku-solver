@@ -5,7 +5,6 @@ const tecladoSudoku = document.getElementById("teclado-sudoku");
 var idCelulaSelecionada = "cel-00";
 
 
-
 for (var i = 0; i < 9; i++) {
     linhas[i].setAttribute("id",`linha${i}`);
     for (var a = 0; a < 9; a++) {
@@ -14,10 +13,15 @@ for (var i = 0; i < 9; i++) {
         celulas[(i*9)+a].classList.add(`c${a}`);
         celulas[(i*9)+a].setAttribute("id", `cel-${i}${a}`);
         celulas[(i*9)+a].addEventListener("click", marcarCelula);
+        celulas[(i*9)+a].addEventListener("change", alterarValorBotao);
     }
 }
 
 document.getElementById(idCelulaSelecionada).classList.add("selecionado");
+
+function alterarValorBotao() {
+    console.log("Mudou");
+}
 
 function selecionarCelula(id) {
     if (id != idCelulaSelecionada) {
