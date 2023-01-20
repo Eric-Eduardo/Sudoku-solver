@@ -1,0 +1,243 @@
+* {
+    margin:0; 
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+body {
+    height: 100vh;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Encode Sans', sans-serif;
+}
+
+body[class="dark-mode"] {
+    background-color: #212131;
+}
+
+h1 {
+    color: #6D6A9F;
+    font-size: 32px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 86px;
+    border-bottom: 1px solid #6D6A9F;
+}
+
+#btn-mode {
+    background-color: rgba(113, 38, 212, 0.15);
+    border-radius: 50px;
+    padding: 3px;
+}
+
+.dark-mode #btn-mode {
+    background-color: #FFC70026;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.icon-tabler-sun {
+    display: none;
+}
+
+.dark-mode .icon-tabler-sun{
+    display: block;
+}
+
+.dark-mode .icon-tabler-moon {
+    display: none;
+}
+
+main {
+    margin: 100px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.notificacao {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    left: 50%;
+    transform: translate(-50%, -40px);
+    top: 25px;
+
+    padding: 15px;
+    border-radius: 10px;
+    gap: 10px;
+    /* justify-content: space-between; */
+    /* min-width: none; */
+
+    opacity: 0%;
+    transition: all .3s;
+    visibility: hidden;
+    min-width: 300px;
+}
+
+.mensagem-erro {
+    background-color: #FF006B;
+    color: white;
+    box-shadow: rgba(255, 0, 107, 0.3) 0px 10px 50px;
+}
+
+.mensagem-erro > div:first-child {
+    display: flex;
+    gap: 7px;
+}
+
+.mensagem-erro div > p {
+    color: #ffd5e6;
+    font-weight: 500;
+}
+
+.icone-fechar {
+    align-self: flex-start;
+    justify-self: flex-end;
+}
+
+.icone-fechar:hover {
+    cursor: pointer;
+}
+
+/* .mensagem-erro:hover {
+    transform: translate(-50%, 0px);
+} */
+
+.mensagem-erro div > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    /* width: 500px ; */
+}
+
+.mensagem-erro p {
+    font-size: 15px;
+}
+
+.mensagem-erro svg:last-child {
+    align-self: flex-start;
+    justify-self: flex-end;
+}
+.btn-error {
+    color: #FF006B;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 600;
+    gap: 7px;
+    padding: 3px 20px 3px 5px;
+    border-radius: 50px;
+}
+
+table {
+    float: left;
+    border: 2px solid #464554;
+    border-collapse: collapse;
+    color: #302F40;
+}
+.dark-mode table {
+    color: #F0E4FF;
+}
+td {
+    border: 1px solid rgba(70, 69, 84, 0.3);
+    width: 39px;
+    height: 39px;
+    text-align: center;
+    font-size: 30px;
+}
+
+tr:nth-child(3n) {
+    border-bottom: 2px solid #464554;;
+}
+td:nth-child(3n) {
+    border-right: 2px solid #464554;;
+}
+
+td:hover, .selecionado {
+    background-color: rgba(115, 39, 212, 0.35);
+}
+
+#teclado-sudoku {
+    display: grid;
+    grid-template-columns: 90px 90px 90px;
+    grid-template-rows: 90px 90px 90px 60px;
+    gap: 6px;
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.numero {
+    background-color: #E9E8F2;
+    border-radius: 7px;
+    font-size: 35px;
+    color: #7327D4;
+}
+
+.dark-mode .numero {
+    background-color: #302F40;
+    color: #F0E4FF;
+}
+#btn-solve {
+    gap: 10px;
+    background-color: #7327D4;
+    border-radius: 7px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+}
+#btn-apagar {
+    border-radius: 7px;
+    background-color: #FFC700;
+}
+
+
+@media (max-width: 700px) {
+    header {
+        padding: 10px 15px;
+    }
+    main {
+        flex-direction: column;
+        margin: 50px 0;
+        align-items: center;
+        justify-content: center;
+    }
+    #teclado-sudoku {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 15% 15% 15% 15% 15% 15%;
+        grid-template-rows: 40px 40px;
+        gap: 6px;
+        margin: 0px 10px;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    #btn-solve {
+        font-size: 20px;
+        grid-column-start: 4;
+        grid-column-end: 6;
+    }
+    .icon-tabler-player-play {
+        width: 20%;
+        /* height: 20vh; */
+    }
+    .icon-tabler-eraser {
+        width: 70%;
+    }
+    .numero {
+        font-size: 27px;
+    }
+  
+
+
+}
